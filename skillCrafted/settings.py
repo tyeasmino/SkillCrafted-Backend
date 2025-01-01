@@ -97,6 +97,31 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://skillcrafter1.netlify.app",   
+]
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+
+CORS_ALLOWED_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+
 ROOT_URLCONF = 'skillCrafted.urls'
 
 TEMPLATES = [
@@ -148,6 +173,8 @@ DATABASES = {
         'PORT': '6543'
     }
 }
+
+
 
 
 
