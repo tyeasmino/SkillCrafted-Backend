@@ -5,7 +5,7 @@ from . import views
 router = DefaultRouter() 
 urlpatterns = [ 
     path('register/', views.UserRegistrationApiView.as_view(), name="register"), 
-    path('active/<uid64>/<token>/', views.activate, name="active"),
+    path('active/<uidb64>/<token>/', views.activate, name="active"),
     path('login/', views.UserLoginApiView.as_view(), name="login"), 
     path('logout/', views.UserLogoutApiView.as_view(), name="logout"), 
     path('user_details/', views.user_details, name="user_details"),  
