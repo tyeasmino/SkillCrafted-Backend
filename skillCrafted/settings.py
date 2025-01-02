@@ -28,9 +28,9 @@ SECRET_KEY = 'django-insecure-ip4r)fh8+kkpytov0sv6bv$%*zo219p15s^qq0)^k3j(x%r6i$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", "https://skillcrafter1.netlify.app"]
 
-LOGIN_URL = "http://127.0.0.1:8000/auth/login/"
+LOGIN_URL = "https://skillcrafter1.netlify.app/auth/login/"
 
 # Application definition
 
@@ -76,12 +76,14 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "http://localhost:8000",
-    'http://localhost:5173'
+    'http://localhost:5173',
+  "https://skillcrafter1.netlify.app"
 )
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000", 
-    'http://localhost:5173'
+    'http://localhost:5173',
+ "https://skillcrafter1.netlify.app"
 ]
 
 MIDDLEWARE = [
