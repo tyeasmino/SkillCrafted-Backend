@@ -77,13 +77,13 @@ CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
     "http://localhost:8000",
     'http://localhost:5173',
-  "https://skillcrafter1.netlify.app"
+    "https://skillcrafter1.netlify.app"
 )
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000", 
     'http://localhost:5173',
- "https://skillcrafter1.netlify.app"
+    "https://skillcrafter1.netlify.app"
 ]
 
 MIDDLEWARE = [
