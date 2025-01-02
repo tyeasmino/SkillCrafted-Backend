@@ -32,7 +32,10 @@ class UserRegistrationApiView(APIView):
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-            confirm_link = f"https://skillcrafter1.netlify.app/accounts/active/{uid}/{token}"
+            FRONTEND_URL = "https://skillcrafter1.netlify.app"  # or use environment variables
+
+            confirm_link = f"{FRONTEND_URL}/accounts/active/{uid}/{token}"
+            # confirm_link = f"https://skillcrafter1.netlify.app/accounts/active/{uid}/{token}"
 
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html', {'confirm_link': confirm_link})
@@ -44,18 +47,18 @@ class UserRegistrationApiView(APIView):
 
 
 def activate(request, uid64, token):
-    try: 
+    try:
         uid = urlsafe_base64_decode(uid64).decode()
-        user = User._default_manager.get(pk=uid) 
-    except(User.DoesNotExist):
-        user = None
+        user = User._default_manager.get(pk=uid)
+    except (User.DoesNotExist, ValueError, TypeError):
+        return Response({'detail': 'Invalid activation link'}, status=status.HTTP_400_BAD_REQUEST)
 
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('https://skillcrafter1.netlify.app/login')
+        return Response({'detail': 'Account activated successfully!'}, status=status.HTTP_200_OK)
     else:
-        return redirect('https://skillcrafter1.netlify.app/registration')
+        return Response({'detail': 'Activation failed. The link may be invalid or expired.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserLoginApiView(APIView):
