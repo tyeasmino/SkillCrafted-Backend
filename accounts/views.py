@@ -56,7 +56,7 @@ def activate(request, uid64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return Response({'detail': 'Account activated successfully!'}, status=status.HTTP_200_OK)
+        return redirect('login')
     else:
         return Response({'detail': 'Activation failed. The link may be invalid or expired.'}, status=status.HTTP_400_BAD_REQUEST)
 
