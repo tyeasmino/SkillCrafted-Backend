@@ -32,10 +32,10 @@ class UserRegistrationApiView(APIView):
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-            FRONTEND_URL = "https://skillcrafter1.netlify.app"  # or use environment variables
+            # FRONTEND_URL = "https://skillcrafter1.netlify.app"  # or use environment variables
 
-            confirm_link = f"{FRONTEND_URL}/accounts/active/{uid}/{token}"
-            # confirm_link = f"https://skillcrafter1.netlify.app/accounts/active/{uid}/{token}"
+            # confirm_link = f"{FRONTEND_URL}/accounts/active/{uid}/{token}"
+            confirm_link = f"https://skillcrafted-backend.vercel.app/accounts/active/{uid}/{token}"
 
             email_subject = "Confirm Your Email"
             email_body = render_to_string('confirm_email.html', {'confirm_link': confirm_link})
